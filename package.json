@@ -1,0 +1,26 @@
+{
+  "name": "@growthroadmaps/ab-server",
+  "version": "0.0.2",
+  "description": "Server-side A/B testing SDK for GrowthRoadmaps",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/theleanoptimizer/growthroadmaps-ab-server"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  }
+}
