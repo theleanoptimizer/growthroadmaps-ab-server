@@ -1,6 +1,6 @@
 {
   "name": "@growthroadmaps/ab-server",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Server-side A/B testing SDK for GrowthRoadmaps",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
