@@ -1,21 +1,21 @@
-# @your-platform/server
+# @growthroadmaps/ab-server
 
 Server-side A/B testing SDK for Node.js (18+). Zero runtime dependencies.
 
 ## Installation
 
 ```bash
-npm install @your-platform/server
+npm install @growthroadmaps/ab-server
 ```
 
 ## Quick Start
 
 ```typescript
-import { ABTestingServer } from '@your-platform/server'
+import { ABTestingServer } from '@growthroadmaps/ab-server'
 
 const ab = new ABTestingServer({
   serverKey: process.env.AB_SERVER_KEY!,
-  apiHost: 'https://your-platform.com'
+  apiHost: 'https://growthroadmaps.com'
 })
 
 await ab.connect()
@@ -73,12 +73,12 @@ Stops all background intervals and flushes remaining events. Resolves when flush
 
 ```typescript
 import express from 'express'
-import { ABTestingServer } from '@your-platform/server'
+import { ABTestingServer } from '@growthroadmaps/ab-server'
 
 const app = express()
 const ab = new ABTestingServer({
   serverKey: process.env.AB_SERVER_KEY!,
-  apiHost: 'https://your-platform.com'
+  apiHost: 'https://growthroadmaps.com'
 })
 await ab.connect()
 
@@ -113,11 +113,11 @@ app.listen(3000)
 
 ```typescript
 // lib/ab.ts
-import { ABTestingServer } from '@your-platform/server'
+import { ABTestingServer } from '@growthroadmaps/ab-server'
 
 export const ab = new ABTestingServer({
   serverKey: process.env.AB_SERVER_KEY!,
-  apiHost: 'https://your-platform.com'
+  apiHost: 'https://growthroadmaps.com'
 })
 ```
 
