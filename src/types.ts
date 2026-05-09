@@ -2,6 +2,8 @@ export interface Variant {
   id: string;
   name: string;
   weight: number;
+  is_control?: boolean;
+  redirect_url?: string | null;
 }
 
 export interface ExperimentConfig {
@@ -24,6 +26,13 @@ export interface GetVariantOptions {
   userId?: string;
   sessionId?: string;
   fallback: string;
+}
+
+export interface VariantAssignment {
+  name: string;
+  id: string;
+  isControl: boolean;
+  redirectUrl?: string | null;
 }
 
 export interface TrackOptions {

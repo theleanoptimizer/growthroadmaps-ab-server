@@ -1,4 +1,4 @@
-import { SDKConfig, GetVariantOptions, TrackOptions } from "./types";
+import { SDKConfig, GetVariantOptions, TrackOptions, VariantAssignment } from "./types";
 import { assignVariant } from "./hasher";
 import { Poller } from "./poller";
 import { EventQueue } from "./queue";
@@ -56,15 +56,20 @@ export class ABTestingServer {
   }
 
   getVariant(options: GetVariantOptions): string {
+    return this.getVariantAssignment(options).name;
+  }
+
+  getVariantAssignment(options: GetVariantOptions): VariantAssignment {
     const { experimentId, userId, sessionId, fallback } = options;
+    const fallbackAssignment: VariantAssignment = { name: fallback, id: "", isControl: true, redirectUrl: null };
 
     const identifier = userId ?? sessionId;
-    if (!identifier) return fallback;
+    if (!identifier) return fallbackAssignment;
 
     const config = this.poller.getConfig(experimentId);
-    if (!config) return fallback;
-    if (config.status !== "running") return fallback;
-    if (!config.variants || config.variants.length === 0) return fallback;
+    if (!config) return fallbackAssignment;
+    if (config.status !== "running") return fallbackAssignment;
+    if (!config.variants || config.variants.length === 0) return fallbackAssignment;
 
     const variant = assignVariant(experimentId, identifier, config.variants);
 
@@ -77,7 +82,12 @@ export class ABTestingServer {
       timestamp: Date.now(),
     });
 
-    return variant.name;
+    return {
+      name: variant.name,
+      id: variant.id,
+      isControl: !!variant.is_control,
+      redirectUrl: variant.redirect_url ?? null,
+    };
   }
 
   track(options: TrackOptions): void {
